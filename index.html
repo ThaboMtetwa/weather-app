@@ -4,39 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Courgette&family=Mulish:wght@300&family=Satisfy&display=swap" rel="stylesheet">
-    <title>Weather by Thabo Mtetwa</title>
+    <link rel="stylesheet" href="style.css"> <!-- External CSS file for styling -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> <!-- Preconnect to Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> <!-- Preconnect to Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Courgette&family=Mulish:wght@300&family=Satisfy&display=swap" rel="stylesheet"> <!-- Importing specific font families from Google Fonts -->
+    <title>Weather by Thabo Mtetwa</title> <!-- Title of the webpage -->
 </head>
 <body>
 
     <div class="card">
         <div class="search">
-            <input type="text" placeholder="enter city name" spellcheck="false">
-            <button><img src="images/search.png"></button>
+            <input type="text" placeholder="enter city name" spellcheck="false"> <!-- Input field for entering the city name -->
+            <button><img src="images/search.png"></button> <!-- Button for initiating the weather search -->
         </div>
         <div class="error">
-            <p>Invalid city name</p>
+            <p>Invalid city name</p> <!-- Error message displayed when an invalid city name is entered -->
         </div>
         <div class="weather">
-            <img src="images/rain.png" class="weather-icon">
-            <h1 class="temp">22°c </h1>
-            <h2 class="city">New York</h2>
+            <img src="images/rain.png" class="weather-icon"> <!-- Placeholder image for weather icon -->
+            <h1 class="temp">22°c </h1> <!-- Placeholder for temperature value -->
+            <h2 class="city">New York</h2> <!-- Placeholder for city name -->
             <div class="details">
                 <div class="col">
-                    <img src="images/humidity.png">
+                    <img src="images/humidity.png"> <!-- Icon for humidity -->
                     <div>
-                        <p class="humidity">50%</p>
-                        <p>Humidity</p>
+                        <p class="humidity">50%</p> <!-- Placeholder for humidity value -->
+                        <p>Humidity</p> <!-- Label for humidity value -->
                     </div>
                 </div>
                 <div class="col">
-                    <img src="images/wind.png">
+                    <img src="images/wind.png"> <!-- Icon for wind speed -->
                     <div>
-                        <p class="wind">15km/hr</p>
-                        <p>Wind Speed</p>
+                        <p class="wind">15km/hr</p> <!-- Placeholder for wind speed value -->
+                        <p>Wind Speed</p> <!-- Label for wind speed value -->
                     </div>
                 </div>
             </div>
@@ -45,51 +45,15 @@
     </div>
     
     <script>
-        const apiKey = "0b17da7a03f8320ef3696f48c993985f";
-        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?0b17da7a03f8320ef3696f48c993985f&units=metric&q=";
+        const apiKey = "0b17da7a03f8320ef3696f48c993985f"; // API key for accessing OpenWeatherMap API
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?0b17da7a03f8320ef3696f48c993985f&units=metric&q="; // URL for making API requests
 
-        const searchBox = document.querySelector(".search input");
-        const searchBtn = document.querySelector(".search button");
-        const weatherIcon = document.querySelector(".weather-icon");
+        const searchBox = document.querySelector(".search input"); // Reference to the city input field
+        const searchBtn = document.querySelector(".search button"); // Reference to the search button
+        const weatherIcon = document.querySelector(".weather-icon"); // Reference to the weather icon placeholder
 
         async function checkWeather(city) {
-            const response = await fetch(apiUrl + city + `&appid=${apiKey}`);
+            const response = await fetch(apiUrl + city + `&appid=${apiKey}`); // Send a GET request to the OpenWeatherMap API with the specified city and API key
 
             if(response.status == 404) {
-                document.querySelector(".error").style.dsiplay = "block";
-                document.querySelector(".weatherr").style.dsiplay = "none";
-            }else {
-                var data = await response.json();
-
-        document.querySelector(".city").innerHTML = data.name;
-        document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°c";
-        document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
-        document.querySelector(".wind").innerHTML = data.wind.speed + "km/h";   
-
-            if (data.weather[0].main == "Clouds") {
-                weatherIcon.src = "images/clouds.png";
-            }
-            else if (data.weather[0].main == "Clear") {
-                weatherIcon.src = "images/clear.png";
-            }
-            else if (data.weather[0].main == "Rain") {
-                weatherIcon.src = "images/rain.png";
-            }
-            else if (data.weather[0].main == "Drizzle") {
-                weatherIcon.src = "images/drizzle.png";
-            }
-            else if (data.weather[0].main == "Mist") {
-                weatherIcon.src = "images/mist.png";
-            }
-
-            document.querySelector(".weather").style.display = "block";
-            document.querySelector(".error").style.dsiplay = "none";
-
-        }
-    }
-        searchBtn.addEventListener("click", ()=>{
-            checkWeather(searchBox.value);
-        })
-    </script>
-</body>
-</html>
+                document.querySelector(".error").style.dsiplay = "block"; //
